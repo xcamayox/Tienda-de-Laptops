@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from "@angular/router";
 import { LaptopService } from '../laptop.service';
-import { LaptopCreacion } from '../laptop.models';
+import { Laptop } from '../laptop.models';
 import { FormularioProductoComponent } from '../formulario-producto/formulario-producto.component';
 
 
@@ -19,7 +19,8 @@ export class CrearProductoComponent {
 laptopService= inject(LaptopService);
 router = inject(Router)
 
-guardarCambios(laptop:LaptopCreacion){
+//guardarCambios(laptop:LaptopCreacion){
+  guardarCambios(laptop:Laptop){
   this.laptopService.crear(laptop).subscribe( ()=>{
     this.router.navigate(["productos"]
     )

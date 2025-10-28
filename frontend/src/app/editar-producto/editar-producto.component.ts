@@ -1,6 +1,6 @@
 import { Component, inject, Input, input, numberAttribute, OnInit } from '@angular/core';
 import { LaptopService } from '../laptop.service';
-import { Laptop, LaptopCreacion } from '../laptop.models';
+import { Laptop } from '../laptop.models';
 import { Router } from '@angular/router';
 import { FormularioProductoComponent } from '../formulario-producto/formulario-producto.component';
 
@@ -24,7 +24,7 @@ ngOnInit(): void {
   });
 }
 
-guardarCambios(laptop:LaptopCreacion){
+guardarCambios(laptop:Laptop){
   this.laptopService.actualizar(this.id,laptop).subscribe(()=>{
     this.router.navigate(['/productos']);
   })

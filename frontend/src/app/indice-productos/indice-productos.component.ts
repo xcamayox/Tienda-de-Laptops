@@ -14,7 +14,7 @@ import { MatTableModule } from '@angular/material/table';
 export class IndiceProductosComponent {
 laptopServ = inject(LaptopService);
 laptops?:Laptop[];
-columnasAMostrar =['nombre','acciones'];
+columnasAMostrar =['nombre','marca','precio','stock','acciones'];
 
 constructor(){
 
@@ -23,7 +23,7 @@ constructor(){
 
 cargarProductos(){
      this.laptopServ.obtenerTodos().subscribe( lap=> {
-    this.laptops=lap;
+        this.laptops=lap;
   });
 
   }

@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../environments/environment.development';
-import { Laptop, LaptopCreacion } from './laptop.models';
+import { Laptop } from './laptop.models';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class LaptopService {
 
 
@@ -23,11 +24,11 @@ export class LaptopService {
 
 
 
-  public crear(laptop: LaptopCreacion){
+  public crear(laptop: Laptop){
     return this.http.post(this.URLbase, laptop);
   }
 
-  public actualizar(id:number,laptop:LaptopCreacion){
+  public actualizar(id:number,laptop:Laptop){
     return this.http.put(`${this.URLbase}/${id}`,laptop);
   }
 

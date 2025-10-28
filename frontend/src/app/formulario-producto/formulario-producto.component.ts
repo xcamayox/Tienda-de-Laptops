@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
-import { Laptop, LaptopCreacion } from '../laptop.models';
+import { Laptop } from '../laptop.models';
 import { LaptopService } from '../laptop.service';
 
 @Component({
@@ -24,7 +24,8 @@ export class FormularioProductoComponent implements OnInit {
   modelo?:Laptop;
 
   @Output()
-  posteoFormulario = new EventEmitter<LaptopCreacion>();
+  posteoFormulario = new EventEmitter<Laptop>();
+  //posteoFormulario = new EventEmitter<LaptopCreacion>();
 
   ngOnInit(): void {
     if(this.modelo!==undefined){
@@ -33,11 +34,16 @@ export class FormularioProductoComponent implements OnInit {
   }
 
   form= this.formBuilder.group({
-    nombre: ['']
+    nombre: [''],
+    marca:[''],
+    precio:0,
+    stock:0,
   })
 
   guardarCambios(){
-    let laptop= this.form.value as LaptopCreacion;
+    let laptop= this.form.value as Laptop;
+    //let laptop= this.form.value as LaptopCreacion;
+    console.log(laptop);
     this.posteoFormulario.emit(laptop);
   }
 
