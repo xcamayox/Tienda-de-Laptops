@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from "@angular/router";
 import { LaptopService } from '../laptop.service';
@@ -14,17 +14,28 @@ import { MatTableModule } from '@angular/material/table';
 export class IndiceProductosComponent {
 laptopServ = inject(LaptopService);
 laptops?:Laptop[];
-columnasAMostrar =['nombre','marca','precio','stock','acciones'];
+columnasAMostrar =['id','nombre','marca','precio','stock','acciones'];
+
+id=signal(0);
+nombre=signal("");
+
 
 constructor(){
 
   this.cargarProductos();
 }
 
+onFiltrar(){
+  this.laptopServ.obtenerPorIdYNombre(this.id(),this.nombre()).subscribe( lap=>{
+    this.laptops=lap;
+  })
+}
+
+
 cargarProductos(){
      this.laptopServ.obtenerTodos().subscribe( lap=> {
         this.laptops=lap;
-  });
+      });
 
   }
 

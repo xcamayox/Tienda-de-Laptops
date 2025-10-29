@@ -22,7 +22,9 @@ export class LaptopService {
     return this.http.get<Laptop>(`${this.URLbase}/${id}`);
   }
 
-
+public obtenerPorIdYNombre(id:number,nombre:string):Observable<Laptop[]>{
+  return this.http.get<Laptop[]>(`${this.URLbase}/ObtenerLaptopPorIdYNombre?id=${id}&nombre=${nombre}`);
+}
 
   public crear(laptop: Laptop){
     return this.http.post(this.URLbase, laptop);

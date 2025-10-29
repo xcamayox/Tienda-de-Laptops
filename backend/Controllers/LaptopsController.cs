@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MiWebApi.Entidades;
+using System.ComponentModel;
 
 namespace MiWebApi.Controllers
 {
@@ -28,6 +29,20 @@ namespace MiWebApi.Controllers
                 return NotFound();
             }
             return laptop;
+        }
+
+        [HttpGet("ObtenerLaptopPorIdYNombre")]
+        public async Task<List<Laptop>> ObtenerLaptopPorIdYNombre(int id=0,string nombre="")
+        {
+            if (id > 0 && !string.IsNullOrEmpty(nombre) )
+                return await context.Laptops.Where(x =>x.Id==id || x.Nombre.Contains(nombre)).ToListAsync();
+            else if(id > 0 && string.IsNullOrEmpty(nombre))
+                return await context.Laptops.Where(x => x.Id == id).ToListAsync();
+            else if (id ==0 && !string.IsNullOrEmpty(nombre))
+                return await context.Laptops.Where(x =>x.Nombre.Contains(nombre)).ToListAsync();
+            else
+                return await context.Laptops.ToListAsync();
+            
         }
 
         [HttpPost]

@@ -1,10 +1,33 @@
 <h2>Laptops</h2>
 
-<button mat-flat-button routerLink="/productos/crear"> Crear nueva laptop
 
-</button>
+
+<div style="margin-top: 2rem;">
+<input matInput  type="number" class="inp-fil"
+placeholder="Id"
+[value]="id()"
+(input)="id.set(txtid.valueAsNumber)"
+#txtid
+/>
+
+<input matInput  type="text" class="inp-fil"
+placeholder="Nombre"
+[value]="nombre()"
+(input)="nombre.set(txtnombre.value)"
+#txtnombre
+>
+
+<button mat-flat-button style="background-color: green;" (click)="onFiltrar()"> Buscar</button>
+<button mat-flat-button routerLink="/productos/crear" style="margin-left: 27rem;"> Crear nueva laptop</button>
+</div>
+
+
 @if(laptops){
   <table mat-table [dataSource]="laptops" class="mat-elevation-z8 indice-elementos">
+    <ng-container matColumnDef="id" >
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let laptop">{{laptop.id}}</td>
+    </ng-container>
     <ng-container matColumnDef="nombre" >
         <th mat-header-cell *matHeaderCellDef>Nombre</th>
         <td mat-cell *matCellDef="let laptop">{{laptop.nombre}}</td>
